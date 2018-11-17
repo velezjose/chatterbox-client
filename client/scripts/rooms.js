@@ -6,4 +6,6 @@ var Rooms = {
   init: function(arrayRoom) {
     RoomsView.renderRoom(arrayRoom.roomname);
   }
+  
+  
 };

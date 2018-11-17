@@ -9,9 +9,15 @@ var MessagesView = {
   },
 
   renderMessage: function(message) {
-    MessagesView.$chats.prepend(`<p>${message.username}: 
-      ${message.text} 
-    </p>`);
+    MessagesView.$chats.prepend(`
+      <p class=${message.username}>
+        <a href='Friends.toggleStatus();'>
+          ${message.username}
+        </a>
+          ${message.text}
+          ${message.roomname} 
+      </p>`
+    );
   }
 
 };
