@@ -12,7 +12,7 @@ var FormView = {
     
     var message = {
       username: App.username,
-      message: $('#message').val(),
+      text: $('#message').val(),
       roomname: $('#createdrooms option:selected').text()
     };  
     

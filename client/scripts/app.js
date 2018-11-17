@@ -3,6 +3,8 @@ var App = {
   $spinner: $('.spinner img'),
 
   username: 'anonymous',
+  
+  model: {},
 
   initialize: function() {
     App.username = window.location.search.substr(10);
@@ -20,9 +22,16 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log(data);
-
-      callback();
+      console.log(data.results);
+      //debugger;
+      for (var i = 0; i < data.results.length; i++) {
+        // if (data.results[i].roomname === undefined 
+        //     || data.results[i].roomname === '' || data.results[i].roomname) {
+        //   continue;
+        // }
+        
+        callback(data.results[i]);
+      }
     });
   },
 
