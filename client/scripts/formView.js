@@ -9,10 +9,9 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-    
     var message = {
       username: App.username,
-      message: $('#message').val(),
+      text: $('#message').val(),
       roomname: $('#createdrooms option:selected').text()
     };  
     

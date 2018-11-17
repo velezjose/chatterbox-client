@@ -21,8 +21,20 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
-
-      callback();
+      for (var i = 0; i < data.results.length; i++) {
+        var d = data.results[i];
+        if(d.username === undefined || d.username === '' || (d.username.includes('<') && d.username.includes('>') && d.username.includes('/'))) {
+          continue;
+        }
+        if(d.text === undefined || d.text === '' || (d.text.includes('<') && d.text.includes('>') && d.text.includes('/'))) {
+          continue;
+        }
+        
+        if(d.roomname === undefined || d.roomname === '' || (d.roomname.includes('<') && d.roomname.includes('>') && d.roomname.includes('/'))) {
+          continue;
+        }
+        callback(d);
+      }
     });
   },
 
