@@ -3,9 +3,13 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
+    // MessagesView.$chats.on('submit');
   },
 
-  render: function() {
+  renderMessage: function(message) {
+    MessagesView.$chats.append(`<p>${message.username}: 
+      ${message.message} 
+    </p>`);
   }
 
 };

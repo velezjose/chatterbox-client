@@ -10,7 +10,14 @@ var FormView = {
     // Stop the browser from submitting the form
     event.preventDefault();
     
-    console.log('click!');
+    var message = {
+      username: App.username,
+      message: $('#message').val(),
+      roomname: $('#createdrooms option:selected').text()
+    };  
+    
+    Messages.add(message);    
+    // console.log('click!');
   },
 
   setStatus: function(active) {
