@@ -4,25 +4,22 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    App.fetch(Rooms.init);
+    //App.fetch(Rooms.init);
 
     
     var initialRoomMessage = [];
     
-    setTimeout(function() {
-      $('#chats').val('');
+    // setTimeout(function() {
+    //   $('#chats').val('');
       
-      App.fetch(function(data) {
-        console.log($('#createdrooms option:selected').text());
-        if (data.roomname === $('#createdrooms option:selected').text()) {
-          
-          MessagesView.renderMessage(data);
-        }
-        //console.log(data.results.filter( elem => elem.roomname === $('#createdrooms option:selected').text()) );
+    //   App.fetch(function(data) {
+    //     if (data.roomname === $('#createdrooms option:selected').text()) {          
+    //       MessagesView.renderMessage(data);
+    //     }
         
-      });
+    //   });
       
-    }, 100);
+    // }, 100);
     
     
     
@@ -35,7 +32,6 @@ var RoomsView = {
   },  
 
   renderRoom: function(room) {
-    //console.log(room);
     RoomsView.$select.append(`<option value=${room}>${room}</option>`);
     $('#message').val('');
   }

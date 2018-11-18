@@ -25,17 +25,39 @@ var App = {
       console.log(data);
       for (var i = 0; i < data.results.length; i++) {
         var d = data.results[i];
-        if (d.username === undefined || d.username === '' || (d.username.includes('<') && d.username.includes('>') && d.username.includes('/'))) {
-          continue;
-        }
-        if (d.text === undefined || d.text === '' || (d.text.includes('<') && d.text.includes('>') && d.text.includes('/'))) {
-          continue;
+        
+        if (d.username !== undefined && d.username !== null) {
+          d.username = d.username.replace(/%/g, '_');
+          d.username = d.username.replace(/&/g, '_');
+          d.username = d.username.replace(/</g, '_');        
+          d.username = d.username.replace(/>/g, '_');        
+          d.username = d.username.replace(/\\/g, '_');
+          d.username = d.username.replace(/\s+/g, '_');
         }
         
-        if (d.roomname === undefined || d.roomname === '' || (d.roomname.includes('<') && d.roomname.includes('>') && d.roomname.includes('/'))) {
-          continue;
+        if (d.text !== undefined && d.text !== null) {
+          d.text = d.text.replace(/</g, '&lt;');        
+          d.text = d.text.replace(/>/g, '&gt;');        
         }
-        callback(d);
+        
+        if (d.roomname !== undefined && d.roomname !== null) {
+          d.roomname = d.roomname.replace(/%/g, '&#37;');
+          d.roomname = d.roomname.replace(/&/g, '&amp;');
+          d.roomname = d.roomname.replace(/</g, '&lt;');        
+          d.roomname = d.roomname.replace(/>/g, '&gt;');        
+          d.roomname = d.roomname.replace(/\\/g, '_');
+          d.roomname = d.roomname.replace(/\s+/g, '_');
+        }
+        
+        var message = {
+          username: JSON.stringify(d.username),
+          text: JSON.stringify(d.text),
+          roomname: JSON.stringify(d.roomname)
+        };
+        
+        MessagesView.renderMessage(message);
+        RoomsView.renderRoom(message.room);
+      
       }
     });
   },

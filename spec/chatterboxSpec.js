@@ -85,7 +85,7 @@ describe('chatterbox', function() {
   describe('events', function() {
     it('should add a friend upon clicking their username', function() {
       sinon.spy(Friends, 'toggleStatus');
-
+      debugger;
       App.initialize();
       MessagesView.renderMessage({
         username: 'Mel Brooks',
